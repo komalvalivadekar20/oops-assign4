@@ -1,0 +1,238 @@
+//write a java program to define a class student with attrubtes rollno,name,marks and accept data for 2 object and diplay them
+import java.lang.*;
+import java.io.*;
+ 
+class Student {
+ 
+ String name;
+ int roll_no;
+ int sub1,sub2;
+ 
+ void getdata() throws IOException {
+  
+  BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+  System.out.println ("Enter Name of Student");
+  name = br.readLine();
+  
+  System.out.println ("Enter Roll No. of Student");
+  roll_no = Integer.parseInt(br.readLine());
+  
+  System.out.println ("Enter marks out of 100 of 1st subject");
+  sub1 = Integer.parseInt(br.readLine());
+  
+  System.out.println ("Enter marks out of 100 of 2nd subject");
+  sub2 = Integer.parseInt(br.readLine());
+ }
+ 
+ void show() {
+  
+  int total = sub1+sub2;
+  float per = (total * 100) / 200;
+  System.out.println ("Roll No. = "+roll_no);
+  System.out.println ("Name = "+name);
+  System.out.println ("Marks of 1st Subject = "+sub1);
+  System.out.println ("Marks of 2nd Subject = "+sub2);
+  System.out.println ("Total Marks = "+total);
+  
+ }
+}
+ 
+public class StudentDemo {
+ 
+ public static void main(String[] args) throws IOException {
+  
+  Student s=new Student();
+  s.getdata();
+  s.show();
+ }
+}
+
+=========================================================================================================
+//WAP to define bank accept id,name,balance write method deposit,checkbal,withdraw and display details.
+
+
+class TestAccountInterface
+{
+    public static void main(String s[])
+    {
+        IAccount account = new HDFCAccount();
+    
+        System.out.println("Transacting using HDFC Account");
+        transactOnAccount(account);
+        System.out.println();
+    
+        account = new StateBankAccount();
+    
+        System.out.println("Transacting using State Bank Account");
+        transactOnAccount(account);
+    }
+    
+    public static void transactOnAccount(IAccount account)
+    {
+        System.out.println("------------------------------");
+        account.deposit(10000.0);
+        printBalance("depositing 10,000.0", account);
+        account.withdraw(2500.0);
+        printBalance("withdrawing 2,500.0", account);
+        account.withdraw(4100.0);
+        printBalance("withdrawing 4,100.0", account);
+        account.deposit(5000.0);
+        printBalance("depositing 5,000.0", account);
+        System.out.println("------------------------------");
+    }
+    
+    public static void printBalance(String message, IAccount account)
+    {
+        System.out.println("The balance after " + message + " is " + account.getBalance() +".");
+    }
+
+}
+
+interface IAccount
+{
+    double getBalance();
+
+    void deposit(double amount);
+
+    void withdraw(double amount);
+}
+
+class HDFCAccount implements IAccount
+{
+    double deposits;
+    double withdrawals;
+
+
+    public double getBalance()
+    {
+        return deposits - withdrawals;
+    }
+
+    public void deposit(double amount)
+    {
+        deposits += amount;
+    }
+
+    public void withdraw(double amount)
+    {
+        withdrawals += amount;
+    }
+}
+
+class StateBankAccount implements IAccount
+{
+    double balance;
+
+    public double getBalance()
+    {
+        return balance;
+    }
+
+    public void deposit(double amount)
+    {
+        balance += amount;
+    }
+
+    public void withdraw(double amount)
+    {
+        balance -= amount;
+    }
+=======================================================================================================
+//WAP to define class employee with attribute id,name,designation accept data from 5 objects and dispay employee details.
+
+import java.util.Scanner;
+ 
+public class Employee {
+ 
+ int empid;
+ String name;
+ float salary;
+ 
+ public void getInput() {
+ 
+  Scanner in = new Scanner(System.in);
+  System.out.print("Enter the empid :: ");
+  empid = in.nextInt();
+  System.out.print("Enter the name :: ");
+  name = in.next();
+  System.out.print("Enter the salary :: ");
+  salary = in.nextFloat();
+ }
+ 
+ public void display() {
+  
+  System.out.println("Employee id = " + empid);
+  System.out.println("Employee name = " + name);
+  System.out.println("Employee salary = " + salary);
+ }
+ 
+ public static void main(String[] args) {
+ 
+  Employee e[] = new Employee[5];
+  
+  for(int i=0; i<5; i++) {
+   
+   e[i] = new Employee();
+   e[i].getInput();
+  }
+  
+  System.out.println("**** Data Entered as below ****");
+  
+  for(int i=0; i<5; i++) {
+   
+   e[i].display();
+  }
+ }
+}
+=================================================================================================================================
+// WAP to define class SimpleInterest with attributes principleamount,rate of interest static,number of years calculate SI and display it.
+import java.util.Scanner;
+public class JavaExample
+{
+    public static void main(String args[]) 
+    {
+        float p, r, t, sinterest;
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter the Principal : ");
+        p = scan.nextFloat();
+        System.out.print("Enter the Rate of interest : ");
+        r = scan.nextFloat();
+        System.out.print("Enter the Time period : ");
+        t = scan.nextFloat();
+        scan.close();
+        sinterest = (p * r * t) / 100;
+        System.out.print("Simple Interest is: " +sinterest);
+    }
+}
+
+======================================================================================
+//write  a program complex number to add the rea and imaginary part for 2 complex numbers
+public class ComplexNumber{
+   //for real and imaginary parts of complex numbers
+   double real, img;
+	
+   //constructor to initialize the complex number
+   ComplexNumber(double r, double i){
+	this.real = r;
+	this.img = i;
+   }
+	
+   public static ComplexNumber sum(ComplexNumber c1, ComplexNumber c2)
+   {
+	//creating a temporary complex number to hold the sum of two numbers
+        ComplexNumber temp = new ComplexNumber(0, 0);
+
+        temp.real = c1.real + c2.real;
+        temp.img = c1.img + c2.img;
+        
+        //returning the output complex number
+        return temp;
+    }
+    public static void main(String args[]) {
+	ComplexNumber c1 = new ComplexNumber(5.5, 4);
+	ComplexNumber c2 = new ComplexNumber(1.2, 3.5);
+        ComplexNumber temp = sum(c1, c2);
+        System.out.printf("Sum is: "+ temp.real+" + "+ temp.img +"i");
+    }
+}
+===============================================================
